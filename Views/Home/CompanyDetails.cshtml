@@ -1,0 +1,77 @@
+﻿@model Scoring
+@using System.Security.Claims
+<!-- Header End -->
+<div class="container-xxl py-5 bg-dark page-header mb-5">
+    <div class="container my-5 pt-5 pb-4">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">@ViewBag.model.Users.UserCompanyName</h1>
+        <nav aria-label="breadcrumb">
+        </nav>
+    </div>
+</div>
+<!-- Header End -->
+<!-- Job Detail Start -->
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row gy-5 gx-4">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center mb-5">
+                    <img class="flex-shrink-0 img-fluid border rounded" src="@ViewBag.model.Users.UserImageUrl" alt="" style="width: 80px; height: 80px;">
+                    <div class="text-start ps-4">
+                        <h3 class="mb-3">@ViewBag.model.Users.UserCompanyName</h3>
+                        <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>@ViewBag.model.Users.UserCompanyAddress</span>
+                        <span class="text-truncate me-3"><i class="fa fa-phone-alt me-3 text-primary me-2"></i>@ViewBag.model.Users.UserTelephone</span>
+                    </div>
+                </div>
+
+                <div class="mb-5">
+                    
+                </div>
+
+                <div class="">
+                    <h4 class="mb-4">Apply For The Job</h4>
+                    <form method="post">
+
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-6">
+                                <input type="text" class="form-control" asp-for="ScoringTitle" placeholder="Title">
+                            </div>
+                            @*  <div class="col-12 col-sm-6">
+                            <input type="" class="form-control" asp-for="Score" value="25" placeholder="Score">
+                            </div> *@
+                            <div class="col-12 col-sm-6">
+                                <select class="form-control" asp-for="Score">
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="75">75</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+                           
+                            <div class="col-12">
+                                <textarea class="form-control" rows="5" asp-for="ScoringDescription" placeholder="Message"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100" type="submit">Message Send</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="bg-light rounded p-5 mb-4 wow slideInUp" data-wow-delay="0.1s">
+                    @foreach (var item in ViewBag.model2)
+                    {
+                        <h4 class="mb-3">@item.JobPostingTitle</h4>
+                        <img class="img-fluid border rounded mb-3" src="@item.JobPostingImageUrl" alt="Job Image" style="width: 80px; height: 80px;">
+                        <p><i class="fa fa-angle-right text-primary me-2"></i>@item.JobPostingDate.ToString("dd/MM/yyyy")</p>
+                        <p>@Html.Raw(item.JobPostingDescription)</p>
+                        <hr />
+                    }
+                </div>     
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Job Detail End -->

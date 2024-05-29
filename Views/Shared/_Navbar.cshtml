@@ -1,0 +1,77 @@
+﻿@using System.Security.Claims
+@{
+    string activePage = ViewContext.RouteData.Values["Action"].ToString();
+}
+
+
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+    <a href="/Home/Index" class="navbar-brand d-flex align-items-center text-center py-0 px-4 px-lg-5">
+        <h1 class="m-0 text-primary">Student Jobs</h1>
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a asp-action="Index" asp-controller="Home" class="nav-item nav-link @(activePage == "Index" ? "active" : "")">Home</a>
+            <a asp-action="Sector" asp-controller="Home" class="nav-item nav-link @(activePage == "Sector" ? "active" : "")">Sector</a>
+            <a asp-action="JobPostings" asp-controller="Home" class="nav-item nav-link @(activePage == "JobPostings" ? "active" : "")">Job Postings</a>
+        </div>
+        @* <a asp-action="Login" asp-controller="Account" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Login<i class="fa fa-arrow-right ms-3"></i></a> *@
+        <div class="col-lg-4 text-center text-lg-end">
+            @if (User != null && User.Claims != null &&
+            User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name) != null &&
+            User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name).Value != null &&
+            User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role) != null &&
+            User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role).Value == "Company")
+            {
+                <div class="d-inline-flex align-items-center" style="height: 45px;">
+                    <a asp-area="Home" asp-controller="Account" asp-action="Logout"><small class="me-3 text-black"><i class="fas fa-power-off me-2"></i>Logout</small></a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle text-black" data-bs-toggle="dropdown">
+                            <small>
+                                <i class="fa fa-home me-2"></i>
+                            </small>
+                        </a>
+                        <div class="dropdown-menu rounded">
+                            <a href="/Management/Setting/Edit/@User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value" class="dropdown-item"><i class="fas fa-user-alt me-2"></i> My Profile</a>
+                            <a href="/Management/Home/Index" class="dropdown-item"><i class="fas fa-layer-group me-2"></i>Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                @if (User != null && User.Claims != null &&
+               User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name) != null &&
+               User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name).Value != null &&
+               User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role) != null &&
+               User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role).Value == "Student")
+                {
+                    <div class="d-inline-flex align-items-center" style="height: 45px;">
+                        <a asp-area="Home" asp-controller="Account" asp-action="Logout"><small class="me-3 text-black"><i class="fas fa-power-off me-2"></i>Logout</small></a>
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-toggle text-black" data-bs-toggle="dropdown">
+                                <small>
+                                    <i class="fa fa-home me-2"></i>
+                                </small>
+                            </a>
+                            <div class="dropdown-menu rounded">
+                                <a href="/MyProfile/MyProfile/@User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value" class="dropdown-item"><i class="fas fa-user-alt me-2"></i> My Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="d-inline-flex align-items-center" style="height: 45px;">
+                        <a asp-area="Home" asp-controller="Account" asp-action="Login"><small class="me-3 text-black"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
+                    </div>
+                }
+            }
+        </div>
+
+    </div>
+</nav>
+<!-- Navbar End -->

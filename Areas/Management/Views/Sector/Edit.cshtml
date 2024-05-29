@@ -1,0 +1,31 @@
+﻿@model Sector
+
+<h6 class="mb-0 text-uppercase">@Model.SectorFullName Edit</h6>
+<hr />
+<div class="card">
+    <div class="card-body">
+        <div class="p-4 border rounded">
+            <form class="row g-3 needs-validation" method="post" enctype="multipart/form-data">
+                @Html.HiddenFor(m => m.SectorId)
+                <div class="col-md-4">
+                    <label class="form-label">Sector Name</label>
+                    <input type="text" class="form-control" asp-for="SectorFullName" placeholder="Sector Name">
+                    <span class="text-danger" asp-validation-for="SectorFullName"></span>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label">Sector Description</label>
+                    <textarea class="ckeditor" type="text" placeholder="Sector Description" asp-for="SectorDescription" rows="4"></textarea>
+                    <span class="text-danger" asp-validation-for="SectorDescription"></span>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Sector Image</label>
+                    <input class="form-control mb-3" type="file" name="img" id="img" accept="image/*" />
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-success m-1 px-5" type="submit">Save</button>
+                    <a href="/Management/Sector/Index" class="btn btn-secondary m-1 px-5">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

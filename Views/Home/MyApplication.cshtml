@@ -1,0 +1,42 @@
+﻿<!-- Header End -->
+<div class="container-xxl py-5 bg-dark page-header mb-5">
+	<div class="container my-5 pt-5 pb-4">
+		<h1 class="display-3 text-white mb-3 animated slideInDown">Job Postings</h1>
+		<nav aria-label="breadcrumb">
+		</nav>
+	</div>
+</div>
+<!-- Header End -->
+<!-- Jobs Start -->
+<div class="container-xxl py-5">
+	<div class="container">
+		<h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Job Listing</h1>
+		<div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
+			<div class="tab-content">
+				<div id="tab-1" class="tab-pane fade show p-0 active">
+					@foreach (var item in ViewBag.model)
+					{
+						<div class="job-item p-4 mb-4">
+							<div class="row g-4">
+								<div class="col-sm-12 col-md-8 d-flex align-items-center">
+									<img class="flex-shrink-0 img-fluid border rounded" src="@item.JobPostingImageUrl" alt="" style="width: 80px; height: 80px;">
+									<div class="text-start ps-4">
+										<h5 class="mb-3">@item.JobPostingTitle</h5>
+										<span class="text-truncate me-3"><i class=" text-primary me-2"></i>@Html.Raw(item.JobPostingDescription)</span>
+									</div>
+								</div>
+								<div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
+									<div class="d-flex mb-3">
+										<a class="btn btn-primary" href="/Home/JobPostingDetails/@item.JobPostingId">Details</a>
+									</div>
+									<small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Application Dateline: @item.JobPostingDate.ToString("dd/MM/yyyy")</small>
+								</div>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Jobs End -->

@@ -1,0 +1,164 @@
+﻿@model User
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Student Jobs || Login</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Student Jobs" name="keywords">
+    <meta content="Student Jobs" name="description">
+
+    <!-- Favicon -->
+    <link href="~/darkpan/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="~/darkpan/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/darkpan/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="~/darkpan/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="~/darkpan/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid position-relative d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+        <!-- Sign Up Start -->
+        <div class="container-fluid">
+            <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+                    <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <a href="index.html" class="">
+                                <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>Student Jops</h3>
+                            </a>
+                            <h3>Sign Up</h3>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" id="Student" name="userType">
+                                <label class="form-check-label" for="Student">Student Sign Up</label>
+                                <br />
+                                <input type="radio" class="form-check-input" id="Company" name="userType">
+                                <label class="form-check-label" for="Company">Company Sign Up</label>
+                            </div>
+                        </div>
+                        <form method="post" asp-controller="Account" asp-action="SignUp">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" placeholder="jhondoe" asp-for="UserFullName" required>
+                                <label for="floatingText">Username</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" placeholder="name@example.com" asp-for="UserEmail" required>
+                                <label for="floatingInput">Email address</label>
+                            </div>
+                            <div class="form-floating mb-4">
+                                <input type="password" class="form-control" placeholder="Password" asp-for="UserPassword" required>
+                                <label for="floatingPassword">Password</label>
+                            </div>
+                            <div class="form-floating mb-4">
+                                <input type="text" class="form-control" placeholder="Telephone" asp-for="UserTelephone" required>
+                                <label>Telephone</label>
+                            </div>
+
+                            <input type="hidden" id="roleHidden" asp-for="Role" />
+
+                            <div id="studentForm" style="display:none;">
+                                @* <div class="form-floating mb-4">
+                                <input type="hidden" class="form-control" asp-for="Role" value="Student" redonly>
+                                </div> *@
+                                <div class="form-floating mb-4">
+                                    <input type="date" class="form-control" placeholder="Birth Date" asp-for="UserBirthDate">
+                                    <label>Birth Date</label>
+                                </div>
+                            </div>
+
+                            <div id="companyForm" style="display:none;">
+                                @*  <div class="form-floating mb-4">
+                                <input type="hidden" class="form-control" asp-for="Role" value="Company" redonly >
+                                </div> *@
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" asp-for="UserCompanyName">
+                                    <label>User Company Name</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" asp-for="UserCompanyAddress">
+                                    <label>User Company Address</label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary py-3 w-100 mb-4" asp-action="SingUp" asp-controller="Account">Sign Up</button>
+                        </form>
+                        <p class="text-center mb-0">Already have an Account? <a asp-action="Login" asp-controller="Account">Sign In</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Sign Up End -->
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/darkpan/lib/chart/chart.min.js"></script>
+    <script src="~/darkpan/lib/easing/easing.min.js"></script>
+    <script src="~/darkpan/lib/waypoints/waypoints.min.js"></script>
+    <script src="~/darkpan/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/darkpan/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="~/darkpan/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="~/darkpan/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="~/darkpan/js/main.js"></script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var studentRadio = document.getElementById("Student");
+            var companyRadio = document.getElementById("Company");
+            var studentForm = document.getElementById("studentForm");
+            var companyForm = document.getElementById("companyForm");
+            var roleHidden = document.getElementById("roleHidden");
+
+            studentRadio.addEventListener("change", function () {
+                if (studentRadio.checked) {
+                    studentForm.style.display = "block";
+                    companyForm.style.display = "none";
+                    roleHidden.value = "Student";
+                }
+            });
+
+            companyRadio.addEventListener("change", function () {
+                if (companyRadio.checked) {
+                    studentForm.style.display = "none";
+                    companyForm.style.display = "block";
+                    roleHidden.value = "Company";
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

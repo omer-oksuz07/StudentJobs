@@ -1,0 +1,56 @@
+﻿@model User
+
+<div class="card">
+    <div class="card-body">
+        <form method="post">
+
+            <label asp-for="UserId"></label>
+            <select asp-for="UserId" asp-items="@ViewBag.UserId" class="form-control">
+            </select>
+            <span class="text-danger" asp-validation-for="UserId"></span>
+
+
+
+            @* <label asp-for="UserId"></label>
+            <select asp-for="UserId" class="form-control">
+                @foreach (var user in ViewBag.Users)
+                {
+                    <option value="@user.Id">@user.Name</option>
+                }
+            </select>
+            <span class="text-danger" asp-validation-for="UserId"></span> *@
+
+
+
+
+            <label asp-for="UserCompanyName"></label>
+            <input class="form-control mb-3" type="text"
+                   placeholder="Başlık" asp-for="UserCompanyName">
+            <span class="text-danger" asp-validation-for="UserCompanyName"></span>
+
+            <label asp-for="UserFullName"></label>
+            <input class="form-control mb-3" type="text"
+                   placeholder="Başlık" asp-for="UserFullName">
+            <span class="text-danger" asp-validation-for="UserFullName"></span>
+
+            <label asp-for="UserEmail"></label>
+            <input class="form-control mb-3" type="email"
+                   placeholder="Başlık" asp-for="UserEmail">
+            <span class="text-danger" asp-validation-for="UserEmail"></span>
+
+            <label asp-for="UserPassword"></label>
+            <input class="form-control mb-3" type="UserPassword"
+                   placeholder="Başlık" asp-for="UserPassword">
+            <span class="text-danger" asp-validation-for="UserPassword"></span>
+
+            <label asp-for="UserTelephone"></label>
+            <input class="form-control mb-3" type="text"
+                   placeholder="Telephone" asp-for="UserTelephone">
+            <span class="text-danger" asp-validation-for="UserTelephone"></span>
+
+
+            <input type="submit" value="Kaydet" class="btn btn-primary" />
+
+        </form>
+    </div>
+</div>

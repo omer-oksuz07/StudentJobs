@@ -1,0 +1,80 @@
+﻿@model List<Sector>
+
+<div class="card radius-15">
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-9 row">
+                <div class="card-title">
+                    <h4>Sectors</h4>
+                </div>
+            </div>
+            <div class="col-3 text-end">
+                <a href="/Management/Sector/Create" class="btn btn-success m-1 px-5">Add Sector</a>
+            </div>
+        </div>
+        <hr>
+        <form method="get">
+            <div class="flex-grow-1 search-bar mb-3">
+                <div class="input-group">
+                    <button class="btn btn-search-back search-arrow-back" type="submit"><i class="bx bx-arrow-back"></i></button>
+                    <input type="text" class="form-control" id="Name" name="Name" value="@ViewBag.Search" placeholder="Search Sector">
+                    <button class="btn btn-search" type="submit"><i class="lni lni-search-alt"></i></button>
+                </div>
+            </div>
+        </form>
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">Sıra</th>
+                        <th scope="col" class="text-center">Sector</th>
+                        <th scope="col" class="text-center">Sector Name</th>
+                      
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @for (int i = 1; i <= Model.Count(); i++)
+                    {
+                        <tr>
+                            <th scope="row">@i</th>
+                            <td class="text-center"><img class="rounded ml-3 shadow" src="@Model[i - 1].SectorImageUrl" width="90" height="90" style="object-fit: cover" /></td>
+                            <td class ="text-center">@Model[i - 1].SectorFullName</td>
+                            <td class="text-end">
+                                <a class="btn btn-primary"
+                                   href="/Management/Sector/Details/@Model[i - 1].SectorId">Detail</a>
+
+                                <a class="btn btn-warning"
+                                   href="/Management/Sector/Edit/@Model[i - 1].SectorId">Edit</a>
+
+                                <button class="btn btn-danger" onclick="deleteSector(@Model[i - 1].SectorId);">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section ScriptSection {
+    <script>
+        function deleteSector(SectorId) {
+            if (confirm("Are you sure you want to delete?")) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Management/Sector/DeleteByJs",
+                    data: { SectorId: SectorId },
+                    success: function (data) {
+                        alert(data);
+                        location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Error: " + error);
+                    }
+                });
+            }
+        }
+    </script>
+}

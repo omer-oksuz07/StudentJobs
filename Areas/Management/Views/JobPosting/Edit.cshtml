@@ -1,0 +1,45 @@
+﻿@model JobPosting
+
+<h6 class="mb-0 text-uppercase">@Model.JobPostingTitle Edit</h6>
+<hr />
+<div class="card">
+    <div class="card-body">
+        <div class="p-4 border rounded">
+            <form class="row g-3 needs-validation" method="post" enctype="multipart/form-data">
+                @Html.HiddenFor(m => m.JobPostingId)
+
+                <div class="col-md-6">
+                    <label class="form-label">Job Posting Title </label>
+                    <input type="text" class="form-control" asp-for="JobPostingTitle" placeholder="Job Posting Title">
+                    <span class="text-danger" asp-validation-for="JobPostingTitle"></span>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Sector</label>
+                    <select class="form-select" asp-for="SectorId" asp-items="@ViewBag.SectorId"></select>
+                </div>
+
+
+                <div class="col-md-6">
+                    <input type="date" class="form-control" asp-for="JobPostingDate">
+                    <span class="text-danger" asp-validation-for="JobPostingDate"></span>
+                </div>
+
+
+                <div class="col-md-12">
+                    <label class="form-label">Description</label>
+                    <textarea class="ckeditor" type="text" placeholder="Job Posting Description" asp-for="JobPostingDescription" rows="4"></textarea>
+                    <span class="text-danger" asp-validation-for="JobPostingDescription"></span>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Job Posting Image</label>
+                    <input class="form-control mb-3" type="file" name="img" id="img" accept="image/*" />
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-success m-1 px-5" type="submit">Save</button>
+                    <a href="/Management/JobPosting/Index" class="btn btn-secondary m-1 px-5">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,104 @@
+﻿<!-- Carousel Start -->
+<div class="container-fluid p-0">
+	<div class="owl-carousel header-carousel position-relative">
+		@foreach (var item in Model.Carousel)
+		{
+			<div class="owl-carousel-item position-relative">
+				<img class="img-fluid" src="~/img/carousel-1.jpg" alt="">
+				<div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
+
+					<div class="container">
+						<div class="row justify-content-start">
+							<div class="col-10 col-lg-8">
+								<h1 class="display-3 text-white animated slideInDown mb-4">@item.JobPostingTitle</h1>
+								<h3 class="display-3 text-white animated slideInDown mb-4">@item.Users.UserCompanyName</h3>
+								<p class="fs-5 fw-medium text-white mb-4 pb-2">@Html.Raw(item.JobPostingDescription)</p>
+								<a href="/Home/JobPostingDetails/@item.JobPostingId" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Application</a>
+								<a href="/Home/JobPostingDetails/@item.JobPostingId" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Details</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		}
+	</div>
+</div>
+<!-- Carousel End -->
+<!-- Category Start -->
+<div class="container-xxl py-5">
+	<div class="container">
+		<h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Explore By Category</h1>
+		<div class="row g-4">
+			@foreach (var item in Model.Sectors)
+			{
+				<div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+					<a class="cat-item rounded p-4" href="/Home/SectorDetails/@item.SectorId">
+						<img src="@item.SectorImageUrl" class="mb-4" style="width: 40px; height: 40px; margin: 0 auto;">
+						<h6 class="mb-3">@item.SectorFullName</h6>
+					</a>
+				</div>
+			}
+			<a class="btn btn-primary py-3 px-5" href="/Home/Sectors">Browse More Sector</a>
+		</div>
+	</div>
+</div>
+
+<!-- Category End -->
+<!-- Jobs Start -->
+<div class="container-xxl py-5">
+	<div class="container">
+		<h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Job Listing</h1>
+		<div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
+			<div class="tab-content">
+				<div id="tab-1" class="tab-pane fade show p-0 active">
+					@foreach (var item in Model.JobPostings)
+					{
+					<div class="job-item p-4 mb-4">
+						<div class="row g-4">
+							<div class="col-sm-12 col-md-8 d-flex align-items-center">
+								<img class="flex-shrink-0 img-fluid border rounded" src="@item.JobPostingImageUrl" alt="" style="width: 80px; height: 80px;">
+								<div class="text-start ps-4">
+									<h5 class="mb-3">@item.JobPostingTitle</h5>
+									<span class="text-truncate me-3"><i class=" text-primary me-2"></i>@Html.Raw(item.JobPostingDescription)</span>
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
+								<div class="d-flex mb-3">
+										<a class="btn btn-primary" href="/Home/JobPostingDetails/@item.JobPostingId">Details</a>
+								</div>
+								<small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Application Dateline: @item.JobPostingDate.ToString("dd/MM/yyyy")</small>
+							</div>
+						</div>
+					</div>
+					}
+					<a class="btn btn-primary py-3 px-5" href="/Home/JobPostings">Browse More Jobs</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Jobs End -->
+<!-- Testimonial Start -->
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+	<div class="container">
+		<h1 class="text-center mb-5">Our Clients Say!!!</h1>
+		<div class="owl-carousel testimonial-carousel">
+			@foreach (var item in Model.Scorings)
+			{
+				<div class="testimonial-item bg-light rounded p-4">
+					<i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+					<p>@item.ScoringDescription.Substring(0, Math.Min(80, item.ScoringDescription.Length))</p>
+					<div class="d-flex align-items-center">
+						<img class="img-fluid flex-shrink-0 rounded" src="@item.Users.UserImageUrl" style="width: 50px; height: 50px;">
+						<div class="ps-3">
+							<h5 class="mb-1">@item.Users.UserFullName</h5>
+							<small>Create Date: @item.ScoringCreatedDate.ToString("dd/MM/yyyy")</small>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+</div>
+<!-- Testimonial End -->

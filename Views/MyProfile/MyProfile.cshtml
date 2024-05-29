@@ -1,0 +1,87 @@
+﻿@model User
+
+<!-- Header End -->
+<div class="container-xxl py-5 bg-dark page-header mb-5">
+    <div class="container my-5 pt-5 pb-4">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">My Profile</h1>
+        <nav aria-label="breadcrumb">
+        </nav>
+    </div>
+</div>
+<!-- Header End -->
+<div class="container-fluid booking py-5" style="background-color: green;">
+
+    <div class="container py-5">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <h5 class="section-booking-title pe-3">My Profile</h5>
+                <h1 class="text-white mb-4">Student Jobs</h1>
+                <p class="text-white mb-4">
+                    *Welcome to Student Jobs!*
+
+                    You can update your information from this area.
+
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <h1 class="text-white mb-3">Edit Profile</h1>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control bg-white border-0" asp-for="UserFullName" placeholder="Your Name">
+                                <span class="text-danger" asp-validation-for="UserFullName"></span>
+                                <label>Your Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="email" class="form-control bg-white border-0" asp-for="UserEmail" placeholder="Your Email">
+                                <span class="text-danger" asp-validation-for="UserEmail"></span>
+                                <label>Your Email</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control bg-white border-0" asp-for="UserPassword" placeholder="Your Password">
+                                <span class="text-danger" asp-validation-for="UserPassword"></span>
+                                <label>Your Password</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control bg-white border-0" asp-for="Role" placeholder="Your Role" readonly>
+                                <label>Your Role</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="date" class="form-control bg-white border-0" asp-for="UserCreatedDate" placeholder="Create Date" readonly>
+                                <span class="text-danger" asp-validation-for="UserCreatedDate"></span>
+                                <label>Create Date</label>
+                                <input type="hidden" class="form-control bg-white border-0" asp-for="UserCompanyName">
+                                <input type="hidden" class="form-control bg-white border-0" asp-for="UserCompanyAddress">
+                                <input type="hidden" class="form-control bg-white border-0" asp-for="UserTelephone">
+                                <input type="hidden" class="form-control bg-white border-0" asp-for="UserBirthDate">
+                                <input type="hidden" class="form-control bg-white border-0" asp-for="UserUpdateDate">
+
+
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label>Your Image</label>
+                            <input class="form-control mb-3" type="file" name="img" id="img" accept="image/*" />
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-secondary text-white w-100 py-3" type="submit">Save</button>
+                        </div>
+                        <div class="col-6">
+                            <a href="/Home/Index" class="btn btn-secondary text-white w-100 py-3">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

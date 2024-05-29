@@ -1,0 +1,107 @@
+﻿
+<div class="row">
+    <a href="/Management/JobPosting/Index/" class="col-12 col-lg-4">
+        <div class="card radius-15 bg-voilet">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h2 class="mb-0 text-white">@Model.JobPostingsCount </h2>
+                    </div>
+                    <div class="ms-auto font-35 text-white">
+                        <i class="lni lni-remove-file"></i>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div>
+                        <p class="mb-0 text-white">Job Posting Count</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="/Management/Scoring/Index/" class="col-12 col-lg-4">
+        <div class="card radius-15 bg-primary-blue">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h2 class="mb-0 text-white">@Model.ScoringsCount </h2>
+                    </div>
+                    <div class="ms-auto font-35 text-white">
+                        <i class="lni lni-star-filled"></i>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div>
+                        <p class="mb-0 text-white">Scoring Count</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="/Management/Sector/Index/" class="col-12 col-lg-4">
+        <div class="card radius-15 bg-rose">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h2 class="mb-0 text-white">@Model.SectorCount</h2>
+                    </div>
+                    <div class="ms-auto font-35 text-white">
+                        <i class="lni lni-customer"></i>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div>
+                        <p class="mb-0 text-white">
+                            Sector Count
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="card radius-15">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-9 row">
+                <div class="card-title">
+                    <h4>Applications</h4>
+                </div>
+            </div>
+            <div class="col-3 text-end">
+                <a href="/Management/JobPosting/Create" class="btn btn-success m-1 px-5">New Job Posting Add</a>
+            </div>
+        </div>
+        <hr />
+        <div class="table-responsive">
+            <table class="table mb-0" id="dataTable">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">User</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Job Posting</th>
+                        <th scope="col">Activity Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int rowNumber = 1;
+                    }
+                    @foreach (var item in Model.Applications)
+                    {
+                        <tr>
+                            <th scope="row"></th>
+                            <td><img class="rounded ml-3 shadow" src="@item.Users?.UserImageUrl" width="90" height="90" style="object-fit: cover" /></td>
+                            <td>@item.Users?.UserFullName</td>
+                            <td>@item.JobPostings?.JobPostingTitle</td>
+                            <td>@item.JobPostings?.JobPostingDate.ToString("dd MMMM HH:mm")</td>
+                        </tr>
+                        rowNumber++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
